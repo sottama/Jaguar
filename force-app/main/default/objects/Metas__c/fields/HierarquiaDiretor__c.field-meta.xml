@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HierarquiaDiretor__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Hierarquia Diretor</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Hierarquia__c.Nivel__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Hierarquia__c</referenceTo>
+    <relationshipLabel>Metas (Hierarquia Diretor)</relationshipLabel>
+    <relationshipName>Metas2</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

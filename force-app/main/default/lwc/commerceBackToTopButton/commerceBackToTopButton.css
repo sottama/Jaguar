@@ -1,0 +1,22 @@
+/*back to top*/
+.ast-scroll-top-icon,.ast-scroll-to-top-right {
+    font-size: 15px;
+    font-size: 1rem;
+}
+@media (min-width: 769px)
+.ast-scroll-top-icon ast-scroll-to-top-right {
+    content: "769";
+}
+.ast-scroll-top-icon, .ast-scroll-to-top-right {
+    display: none;
+    position: fixed;
+    text-align: center;
+    cursor: pointer;
+    z-index: 99;
+    width: 2.1em;
+    height: 2.1em;
+    line-height: 2.1;
+    color: #fff;
+    border-radius: 2px;
+    content: "";
+}

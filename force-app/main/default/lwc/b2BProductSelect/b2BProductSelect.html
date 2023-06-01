@@ -1,0 +1,46 @@
+<template>
+    <p>{recordId}</p>
+    <template if:true={variant}>
+        <template for:each={product} for:item="variante">
+            <div key={variante.id}>
+
+                <p class="slds-p-horizontal_small"><strong> Id: {variante.id}</strong></p>
+                <p class="slds-p-horizontal_small"><strong> Nome: {variante.name}</strong></p>
+                <p class="slds-p-horizontal_small"><strong> SKU: {variante.code}</strong></p>
+                <p class="slds-p-horizontal_small"><strong> url: {variante.imgUrl}</strong></p>
+                <lightning-input type="number" name="Quantidade" label="Quantidade" value="1" data-id="Quantidade" min="1" max="100000000" onchange={updateQuantity} step="1"></lightning-input>
+                <lightning-button class="slds-p-around_xx-small" label="Adicionar ao Carrinho"  onclick={addToCart} value={variante.id} data-id="adicionarAoCarrinho"></lightning-button> <br><br>
+            </div>
+        </template>
+    </template>
+    <template if:true={simple}>
+        <template for:each={product} for:item="produto">
+            <div key={produto.Id}>
+                <p class="slds-p-horizontal_small"><strong>Teste</strong></p>
+                <p class="slds-p-horizontal_small"><strong>Nome: {produto.name}</strong></p>
+                <p class="slds-p-horizontal_small"><strong>SKU: {produto.code}</strong></p>
+            </div>
+        </template>
+    </template>
+    <template if:true={showAddedToCart}>
+        <section aria-modal="true" class="slds-modal slds-fade-in-open" style="width:100%;">
+            <div class="slds-modal__container modal_container_custom">
+                <lightning-icon class="slds-modal__close slds-float_right custom-color" icon-name="utility:close" size="small" style="color:white" onclick={closeAddedToCartModal} ></lightning-icon>
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium slds-hyphenate">
+                        O item foi adicionado ao carrinho
+                    </h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_x-small slds-modal__content_has-hidden-footer modal-content-custom">
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                        <lightning-button class='slds-button slds-button_neutral button-custom' label='Continuar Comprando' title='Continuar Comprando' onclick={closeAddedToCartModal}></lightning-button>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                        <lightning-button class='slds-button slds-button_neutral button-custom' label='Finalizar Compra' title='Adicionar' onclick={navigateToCart}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

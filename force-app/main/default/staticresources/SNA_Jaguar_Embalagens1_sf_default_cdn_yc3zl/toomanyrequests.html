@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="lwr-revised" content="236.0" />
+        
+        <title>Salesforce B2B Commerce</title>
+
+        <style>
+            /* required to give the component width/height and make it visible to test framework */
+            :root {
+                --lwc-borderWidthThin: 1px;
+            }
+            webruntime-app {
+                display: block;
+            }
+        </style>
+        
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">!function(){const e={documentCreateElement:Document.prototype.createElement,elementSetAttribute:Element.prototype.setAttribute,elementAttachShadow:Element.prototype.attachShadow,elementAppendChild:Element.prototype.appendChild,htmlelementAddEventListener:Element.prototype.addEventListener,iframeContentDocumentGet:Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype,"contentDocument").get,iframeContentWindowGet:Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype,"contentWindow").get};Object.freeze(e),Object.defineProperty(window,"originalDomApis",{writable:!1,value:e});const t=window.frames;Object.defineProperty(window,"frames",{get:function(){const e=[];for(let n=0;n<t.length;n++)try{t[n].frameElement.getRootNode().nodeType===Node.DOCUMENT_FRAGMENT_NODE||e.push(t[n])}catch(o){e.push(t[n])}return e.length===t.length?t:e}})}();</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">!function(){"use strict";window.isBrowserSupportedByWebruntime=function(){const n="performance"in window&&"mark"in window.performance,e="customElements"in window;return n&&e}()}();
+</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">globalThis.LWR = globalThis.LWR || {};
+globalThis.LWR.customInit = (lwr) => {
+
+        LWR.define('@app/apexApiBasePath', [], function() { return "webruntime/api"; });
+        LWR.define('@app/apiBasePath', [], function() { return "webruntime/api"; });
+        LWR.define('@app/basePath', [], function() { return ""; });
+        LWR.define('@app/guestUuidCookieName', [], function() { return null; });
+        LWR.define('@app/isDesignMode', [], function() { return false; });
+        LWR.define('@app/isPreviewMode', [], function() { return false; });
+        LWR.define('@app/o11yConfiguration', [], function() { return "{\"falconSamplingRate\":1.0,\"coreSamplingRate\":1.0,\"falconAbsoluteEndpoint\":\"O11Y_ENDPOINT_NOT_CONFIGURED\",\"coreRelativeEndpoint\":\"/webruntime/log/metrics\",\"falconEnabled\":false,\"coreEnabled\":true,\"traceSamplingRate\":0.0}"; });
+        LWR.define('@app/o11yGuestToken', [], function() { return "Y29yZS9wcm9kLzAwRERUMDAwMDAwWHFUUDJBMCxDT1JFLjAwRERUMDAwMDAwWHFUUC4xNjgyMjk3NjEzMzE0LDIwMjMtMDYtMDJUMTY6MjY6MzAuMjAxMzY3Wg\u003d\u003d.gXk19o9GYtiqy-FcTdN6npRaDHkIRNkt0giURzqPCMBQsvuW_yO3scHncZdqlKNKyLKn4JimZR8wM7TDIwTPVQ|{\"isGuestApiAccessEnabled\":false}"; });
+        LWR.define('@app/routes', [], function() { return [{"label":"Too Many Requests","isPublic":true,"viewId":"b72bc474-da3f-4c8f-ba8d-0d7b94662a63","hasVanityURL":false,"patternMap":{},"id":"dcbfdd8c-5fef-4f6e-9d5f-08c4bfcba716","path":"/toomanyrequests.html","view":"tooManyRequests","isRoot":true,"isDefault":true,"page":{"type":"comm__namedPage","attributes":{"name":"Too_Many_Requests"}}}]; });
+        LWR.define('@app/uiBasePath', [], function() { return ""; });
+        LWR.define('@app/versionKey', [], function() { return "0DBDT000000GmbR:186"; });
+        LWR.define('@app/viewToThemeLayoutMap', [], function() { return {"tooManyRequests":"snaThemeLayout"}; });
+        LWR.define('@salesforce/i18n/lang', [], function() { return "pt_BR"; });
+        LWR.define('@salesforce/site/Id', [], function() { return "0DMDT000000GmbX4AS"; });
+lwr.define("webruntime/dispatcher", [], function(){ return function o11yDipatcherInit(dispatcher) { typeof lwr !== 'undefined' && lwr.attachDispatcher(dispatcher); };});
+lwr.initializeApp();
+globalThis.process = { env: { NODE_ENV: "dev" } };};</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">globalThis.LWR = globalThis.LWR || {};
+Object.assign(globalThis.LWR, {
+  "bootstrapModule": "@lwrjs/app-service/communities_app/module/amd/v/0_9_0",
+  "autoBoot": false,
+  "rootComponents": [
+    "webruntime/app/v/1"
+  ],
+  "requiredModules": [
+    "lwc/v/2_42_0",
+    "@lwrjs/app-service/communities_app/module/amd/v/0_9_0"
+  ],
+  "importMappings": {
+    "default": "webruntime/component/latest/prod/pt_BR/",
+    "imports": {
+      "/webruntime/component/latest/prod/pt_BR/lwc": "webruntime/framework/b6f7127cc3/prod/lwr_lwc",
+      "@app/csrfToken": "webruntime/module/@app/csrfToken",
+      "@app/user": "webruntime/module/@app/user",
+      "@perm/": "webruntime/perm/",
+      "@salesforce/client/formFactor": "webruntime/module/@salesforce/client/formFactor",
+      "@salesforce/featureFlag/": "webruntime/module/@salesforce/featureFlag/",
+      "@salesforce/user/Id": "webruntime/module/@salesforce/user/Id",
+      "@salesforce/user/isGuest": "webruntime/module/@salesforce/user/isGuest",
+      "@salesforce/userPermission/": "webruntime/perm/",
+      "@udd/": "webruntime/module/@udd/",
+      "@view/snaThemeLayout": "webruntime/view/0eb0466e7e972f1ea8ce7352bbad328d/prod/pt_BR/snaThemeLayout",
+      "@view/tooManyRequests": "webruntime/view/911f3d90fb8f70b66e8cd4ea639ea098/prod/pt_BR/tooManyRequests",
+      "mobileruntime/hybridAppManager": "webruntime/framework/dbfe13fbdd/prod/lwr_mobile",
+      "o11y/collectors": "webruntime/component/e4d4aa4dee14ef293440f4f2fc57f259/prod/pt_BR/o11y/collectors",
+      "o11y/simple_collector": "webruntime/component/11cb43e9d62f62f751bc72d247bf5e1d/prod/pt_BR/o11y/simple_collector"
+    }
+  }
+});</script>
+        <script src="webruntime/framework/5b16fcfd07/prod/lwr_loader"></script>
+        <script src="webruntime/framework/9983199c8e/prod/lwr_bootstrap"></script>
+        <script src="webruntime/framework/b6f7127cc3/prod/lwr_lwc"></script>
+        <script src="webruntime/framework/fb80caef83/prod/lwr_app"></script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('lwc', ['lwc/v/2_42_0'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">
+        LWR.define('@app/authenticationCookieName', [], function() { return "__Secure-has-sid"; });
+        LWR.define('@app/extraRouteParams', [], function() { return {}; });
+        LWR.define('@app/isMobileAppMode', [], function() { return false; });
+        LWR.define('@app/loginPath', [], function() { return null; });
+        LWR.define('@app/user', [], function() { return {"isGuest":true,"id":null,"csrfToken":null}; });
+        LWR.define('@salesforce/community/basePath', [], function() { return ""; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('o11y/simple_collector/v/244_9_0', ['o11y/simple_collector'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('o11y/collectors/v/244_9_0', ['o11y/collectors'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/apiBasePath/v/1', ['@app/apiBasePath'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/basePath/v/1', ['@app/basePath'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/csrfToken/v/1', ['@app/csrfToken'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/isDesignMode/v/1', ['@app/isDesignMode'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/isMobileAppMode/v/1', ['@app/isMobileAppMode'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/isPreviewMode/v/1', ['@app/isPreviewMode'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/o11yApiEndpoint/v/1', ['@app/o11yApiEndpoint'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/o11yConfiguration/v/1', ['@app/o11yConfiguration'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/o11yFalconEnabled/v/1', ['@app/o11yFalconEnabled'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/o11yGuestToken/v/1', ['@app/o11yGuestToken'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/o11ySamplingRate/v/1', ['@app/o11ySamplingRate'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/uiBasePath/v/1', ['@app/uiBasePath'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/user/v/1', ['@app/user'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@app/versionKey/v/1', ['@app/versionKey'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@salesforce/i18n/lang/v/1', ['@salesforce/i18n/lang'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('@salesforce/site/Id/v/1', ['@salesforce/site/Id'], function(module) { return module; });</script>
+        <script type="text/javascript" nonce="d4f8f89d-b3cc-4767-aeae-000eb7a30a2c">LWR.define('webruntime/dispatcher/v/1', ['webruntime/dispatcher'], function(module) { return module; });</script>
+        <script src="webruntime/view/911f3d90fb8f70b66e8cd4ea639ea098/prod/pt_BR/tooManyRequests"></script>
+        <script src="webruntime/view/0eb0466e7e972f1ea8ce7352bbad328d/prod/pt_BR/snaThemeLayout"></script>
+        <link rel="icon" href="sfsites/c/cms/delivery/media/MCEB4AFAD2LNGE7DENYD4MESREP4?width=32&height=32">
+        <link rel="apple-touch-icon" href="sfsites/c/cms/delivery/media/MCEB4AFAD2LNGE7DENYD4MESREP4?width=180&height=180"><style type="text/css" id="webruntime-branding">:root{--dxp-g-success:#58bb62;--dxp-g-brand:rgb(47, 48, 113);--dxp-s-text-heading-medium-letter-spacing:0em;--dxp-s-text-heading-small-text-decoration:none;--dxp-s-dropdown-text-color:rgb(255, 255, 255);--dxp-s-text-heading-extra-large-line-height:1.25;--dxp-s-button-large-font-size:1.25rem;--dxp-g-warning-contrast-3:#fff;--dxp-s-button-small-radius-border:4px;--dxp-s-body-font-size:1rem;--dxp-s-dropdown-color-background:rgb(49, 58, 144);--dxp-s-body-small-text-decoration:none;--dxp-s-text-heading-large-line-height:1.25;--dxp-g-neutral-contrast-3:#ffffff;--dxp-s-button-color-hover:var(--dxp-s-button-color-1);--dxp-s-text-heading-medium-text-transform:none;--dxp-g-neutral-contrast-2:#000000;--dxp-g-neutral-contrast-1:#000000;--dxp-s-button-font-size:1rem;--dxp-s-button-letter-spacing:0em;--dxp-s-button-color-focus-contrast:#fff;--dxp-g-warning-contrast-2:#fff;--dxp-g-warning-contrast-1:#000;--dxp-s-link-text-color-1:rgb(35, 36, 84);--dxp-g-info:#0070d2;--dxp-g-root:#ffffff;--dxp-g-root-contrast-1:rgb(8, 8, 8);--dxp-g-root-contrast:#1c1c1c;--dxp-g-root-contrast-2:rgb(0, 0, 0);--dxp-g-root-contrast-3:rgb(0, 0, 0);--dxp-s-header-content-max-width:1644px;--dxp-s-section-columns-max-width:1644px;--dxp-s-button-text-transform:none;--dxp-s-body-line-height:1.5;--dxp-s-body-text-decoration:none;--dxp-s-section-content-spacing-inline-end-mobile:0.75rem;--dxp-s-body-text-transform:none;--dxp-s-text-heading-medium-font-style:normal;--dxp-g-warning-2:rgb(145, 111, 15);--dxp-g-warning-3:rgb(34, 26, 3);--dxp-s-form-element-color-border:var(--dxp-g-neutral-3);--dxp-g-warning-1:rgb(219, 167, 22);--dxp-s-header-content-max-width-mobile:none;--dxp-s-text-heading-large-letter-spacing:0em;--dxp-s-body-font-style:normal;--dxp-s-body-letter-spacing:0em;--dxp-g-warning-contrast:#000;--dxp-s-body-small-font-style:normal;--dxp-s-text-heading-small-font-style:normal;--dxp-s-text-heading-medium-line-height:1.25;--dxp-s-column-spacer-size:1rem;--dxp-s-text-heading-extra-large-letter-spacing:0em;--dxp-s-text-heading-large-text-transform:none;--dxp-s-text-heading-large-font-size:1.75rem;--dxp-s-text-heading-small-color:var(--dxp-g-root-contrast);--dxp-s-section-content-spacing-block-start:1.25rem;--dxp-s-html-font-size-mobile:1rem;--dxp-s-section-content-spacing-inline-end:1.125rem;--dxp-s-body-small-font-weight:400;--dxp-s-button-font-family:Montserrat0;--dxp-s-form-element-color-background:var(--dxp-g-root);--dxp-g-offline-3:#000000;--dxp-g-offline-2:#070707;--dxp-g-offline-1:#303030;--dxp-s-button-font-weight:400;--dxp-s-body-font-weight:400;--dxp-s-body-small-line-height:1.25;--dxp-g-offline:#444444;--dxp-s-button-small-font-size:0.75rem;--dxp-s-text-heading-extra-large-text-decoration:none;--dxp-s-button-radius-border:4px;--dxp-g-success-contrast:#000;--dxp-s-text-heading-small-font-size:1.125rem;--dxp-s-button-font-style:normal;--dxp-s-body-small-text-transform:none;--dxp-g-brand-contrast-1:rgb(255, 255, 255);--dxp-s-component-wrapper-spacer-size-mobile:1.5rem;--dxp-s-text-heading-small-line-height:1.25;--dxp-s-section-content-spacing-block-end:1.25rem;--dxp-g-brand-contrast-3:rgb(255, 255, 255);--dxp-s-button-color-hover-contrast:#fff;--dxp-g-brand-contrast-2:rgb(255, 255, 255);--dxp-g-brand-1:rgb(35, 36, 84);--dxp-g-brand-2:rgb(11, 11, 27);--dxp-g-warning:#eab930;--dxp-g-success-3:rgb(9, 21, 10);--dxp-g-brand-3:rgb(0, 0, 0);--dxp-g-success-2:rgb(44, 108, 51);--dxp-g-success-1:rgb(68, 166, 78);--dxp-s-link-text-color-hover:var(--dxp-s-link-text-color-1);--dxp-s-text-heading-small-font-family:Montserrat0;--dxp-s-column-spacer-size-mobile:0.75rem;--dxp-g-offline-contrast-3:#ffffff;--dxp-s-text-heading-large-font-style:normal;--dxp-g-offline-contrast-2:#ffffff;--dxp-g-info-contrast-3:#fff;--dxp-s-body-small-font-size:0.75rem;--dxp-g-destructive-1:#a2302b;--dxp-s-button-color-active:var(--dxp-s-button-color-1);--dxp-s-text-heading-small-text-transform:none;--dxp-g-offline-contrast-1:#ffffff;--dxp-s-section-content-spacing-inline-start-mobile:0.75rem;--dxp-s-section-content-spacing-block-end-mobile:1rem;--dxp-g-info-contrast:#fff;--dxp-s-html-font-size:1rem;--dxp-s-body-font-family:Montserrat0;--dxp-s-link-text-color:rgb(47, 48, 113);--dxp-s-link-text-decoration-focus:underline;--dxp-g-destructive-2:#611d1a;--dxp-g-neutral:#ecebea;--dxp-g-destructive-3:#010000;--dxp-g-info-contrast-1:#fff;--dxp-s-dropdown-text-color-hover:rgb(255, 255, 255);--dxp-g-info-contrast-2:#fff;--dxp-s-text-heading-extra-large-font-family:Montserrat0;--dxp-s-form-element-label-color:var(--dxp-g-root-contrast);--dxp-s-text-heading-large-font-family:Montserrat0;--dxp-s-text-heading-extra-large-font-weight:300;--dxp-s-text-heading-medium-text-decoration:none;--dxp-s-text-heading-extra-large-font-style:normal;--dxp-s-button-large-padding:1.25rem;--dxp-s-text-heading-small-font-weight:300;--dxp-s-text-heading-large-font-weight:300;--dxp-g-info-2:rgb(0, 47, 88);--dxp-s-form-element-text-color:var(--dxp-g-root-contrast);--dxp-g-info-3:rgb(0, 0, 0);--dxp-g-destructive-contrast:#ffffff;--dxp-s-text-heading-medium-font-weight:300;--dxp-g-info-1:rgb(0, 90, 169);--dxp-g-destructive-contrast-1:#ffffff;--dxp-g-neutral-contrast:#000000;--dxp-s-dropdown-color-background-hover:rgb(49, 58, 144);--dxp-g-destructive-contrast-2:#ffffff;--dxp-g-root-1:#ebebeb;--dxp-g-destructive-contrast-3:#ffffff;--dxp-g-root-2:#c2c2c2;--dxp-s-section-content-spacing-inline-start:1.125rem;--dxp-g-root-3:#858585;--dxp-s-button-color-1:rgb(35, 36, 84);--dxp-s-body-text-color:var(--dxp-g-root-contrast);--dxp-s-footer-content-max-width-mobile:none;--dxp-g-brand-contrast:#ffffff;--dxp-s-button-color:rgb(47, 48, 113);--dxp-s-form-element-width-border:1px;--dxp-g-neutral-3:#76716b;--dxp-s-body-small-text-color:var(--dxp-g-root-contrast);--dxp-g-neutral-2:#b2aeaa;--dxp-s-text-heading-extra-large-color:rgb(47, 48, 113);--dxp-g-neutral-1:#d9d7d5;--dxp-s-button-color-active-contrast:#fff;--dxp-g-success-contrast-3:#fff;--dxp-g-success-contrast-2:#fff;--dxp-s-button-line-height:2;--dxp-s-site-logo-url:url(sfsites/c/cms/delivery/media/MCFYFUDJ5ALRADRL5EY45ZR5ESFU);--dxp-s-text-heading-extra-large-font-size:2.5rem;--dxp-s-button-large-radius-border:4px;--dxp-g-success-contrast-1:#000;--dxp-s-form-element-radius-border:4px;--dxp-s-component-wrapper-spacer-size:0rem;--dxp-s-link-text-decoration:none;--dxp-s-text-heading-medium-font-size:1.25rem;--dxp-g-destructive:#c23934;--dxp-s-dropdown-color-border:rgb(255, 255, 255);--dxp-s-button-color-contrast:#fff;--dxp-s-section-columns-max-width-mobile:none;--dxp-g-offline-contrast:#ffffff;--dxp-s-text-heading-medium-color:var(--dxp-g-root-contrast);--dxp-s-button-small-padding:0.75rem;--dxp-s-text-heading-large-color:var(--dxp-g-root-contrast);--dxp-s-text-heading-large-text-decoration:none;--dxp-s-link-text-decoration-hover:underline;--dxp-s-button-color-focus:var(--dxp-s-button-color-1);--dxp-s-button-padding:1rem;--dxp-s-text-heading-medium-font-family:Montserrat0;--dxp-s-site-logo-path:sfsites/c/cms/delivery/media/MCFYFUDJ5ALRADRL5EY45ZR5ESFU;--dxp-s-footer-content-max-width:1644px;--dxp-s-body-small-font-family:Montserrat0;--dxp-s-text-heading-small-letter-spacing:0em;--dxp-s-body-small-letter-spacing:0em;--dxp-s-section-content-spacing-block-start-mobile:1rem;--dxp-s-text-heading-extra-large-text-transform:none;}</style> <!-- General -->
+<link rel="stylesheet" href="assets/styles/dxp-styling-hooks.min.css?0DBDT000000GmbR:186" />
+<link rel="stylesheet" href="assets/styles/dxp-slds-extensions.min.css?0DBDT000000GmbR:186" />
+<link rel="shortcut icon" href="https://jaguarind--qa--c.sandbox.vf.force.com/resource/1678380546000/favicon?v=2">
+<link rel="stylesheet" href="assets/css/font-awesome.css?0DBDT000000GmbR:186">
+<link rel="stylesheet" href="assets/css/theme.css?0DBDT000000GmbR:186">
+<link href="https://fonts.googleapis.com" rel="stylesheet">
+<link href="https://fonts.gstatic.com" rel="stylesheet">
+<link href="https://fonts.google.com/specimen/Montserrat" rel="stylesheet">
+
+<!-- webruntime-branding-shared stylesheets -->
+<link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.min.css?0DBDT000000GmbR:186" />
+<link rel="stylesheet" href="assets/styles/dxp-site-spacing-styling-hooks.min.css?0DBDT000000GmbR:186" />
+<link rel="stylesheet" href="assets/styles/dxp-styling-hooks.min.css?0DBDT000000GmbR:186" />
+<link rel="stylesheet" href="assets/styles/dxp-slds-extensions.min.css?0DBDT000000GmbR:186" />
+<link rel="stylesheet" href="assets/themes/alpine.css?0DBDT000000GmbR:186" />
+
+<!-- webruntime-branding-shared stylesheets -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@font-face {
+      font-family: 'Montserrat0';
+     src: url('/sfsites/c/resource/Montserrat0?') format('woff');
+    }
+  
+
+/*nome dos produtos pág produto*/
+.slds-rich-text-editor__output {
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    color: #4F4F4F;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    align-content: center;
+    text-transform: capitalize;
+}    
+    
+.b2c_lite_commerce-shopCategoryUi_categoryCardUi-host .tile-header.b2c_lite_commerce-shopCategoryUi_categoryCardUi {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 20em;
+    font-weight: 700;
+    font-size: 16px;
+    color: #4F4F4F;
+}
+    
+/*Card produtos*/   
+.menu.b2c_lite_commerce-topSellersUi_topSellersUi {
+    width: 150%;
+}
+    
+.cardContainerGrid[b2b_search_product_card-productCard_productCard] {
+    display: grid;
+    padding: 0 0.75rem;
+    border: none;
+    overflow: hidden;
+    grid-template-rows: min-content min-content auto min-content min-content;
+    grid-template-areas:
+        'imageArea'
+        'fieldsArea'
+        'priceArea'
+        'quantityRuleArea'
+        'callToActionArea';
+    flex-grow: 1; 
+    }    
+    
+.carousel-card-container.b2c_lite_commerce-carouselUi_carouselUi {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+}
+
+.carousel-container.b2c_lite_commerce-carouselUi_carouselUi {
+    justify-content: space-evenly;
+    border-radius: 5px;
+}
+
+body .b2c_lite_commerce-shopCategoryUi_shopCategoryUi-host .menu-container.b2c_lite_commerce-shopCategoryUi_shopCategoryUi .menu.b2c_lite_commerce-shopCategoryUi_shopCategoryUi {
+    width: 100%;
+    justify-content: space-evenly;
+    margin-left: -15%;
+    margin-right: -15%;
+}   
+    
+.card-item.commerce_search-productGrid_productGrid {
+    flex-grow: 1;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+}   
+
+body .menu-container.b2c_lite_commerce-topSellersUi_topSellersUi {
+    align-content: center;
+    display: flex;
+    overflow: hidden;
+    padding-bottom: 3%;
+    justify-content: space-evenly;
+    margin-left: -15%;
+    margin-right: -15%;
+}  
+
+body .b2c_lite_commerce-shopCategoryUi_shopCategoryUi-host .menu-container.b2c_lite_commerce-shopCategoryUi_shopCategoryUi .menu.b2c_lite_commerce-shopCategoryUi_shopCategoryUi {
+    width: 100%;
+    justify-content: space-evenly;
+    margin-left: -15%;
+    margin-right: -15%;
+    padding-bottom: 5%;
+    padding-top: 1%;
+}  
+    
+.card-item.commerce_search-productGrid_productGrid {
+    flex-grow: 1;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+} 
+    
+body .menu-container.b2c_lite_commerce-topSellersUi_topSellersUi {
+    align-content: center;
+    display: flex;
+    overflow: hidden;
+    padding-bottom: 5%;
+    padding-top: 2%;
+    justify-content: space-evenly;
+    margin-left: -15%;
+    margin-right: -15%;
+}    
+    
+body .commerce_search-productField_productField-host {
+    display: grid;
+    word-break: break-word;
+    text-align: center;
+}
+    
+.b2c_lite_commerce-shopCategoryUi_categoryCardUi-host .tile-header.b2c_lite_commerce-shopCategoryUi_categoryCardUi {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 40em;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.grid-item.b2c_lite_commerce-carouselUi_carouselUi {
+    min-width: 50%;
+    border-color: transparent;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+    margin-left: 3%;
+    text-align: center;
+}      
+    
+.main-content-container.dxp_content_layout-blockContentRegion_blockContentRegion {
+    padding: 5%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+} 
+    
+commerce_search-product-card img{
+    height: 200px;
+    width: auto;
+    min-height: 200px;
+    padding: 5%;
+}       
+    
+/*Padding imagens produtos*/
+.productImage[b2b_search_product_card-productCard_productCard] img[b2b_search_product_card-productCard_productCard] {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 5%;
+}    
+
+.productImage.commerce_search-productCard_productCard img.commerce_search-productCard_productCard {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 5%;
+}       
+          
+/*Menu Barra Navegação*/    
+.slds-has-flexi-truncate {
+    background-color: #313A90;
+    color: #FFFFFF;
+}
+
+body .comm-drilldown-navigation__list[community_navigation-drilldownNavigationList_drilldownNavigationList] {
+	outline: none;
+    -webkit-transition-delay: 1s;
+    -moz-transition-delay: 1s;
+    -o-transition-delay: 1s;
+    -ms-transition-delay: 1s;
+    transition-delay: 1s;
+    padding-left: 7%; 
+    padding-right: 7%;   
+    padding-bottom: 7%;   
+    max-height: 2000px;
+    width: 250px;
+    border-left: 8px solid #313A90;
+}
+
+body .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] a.isActive[community_navigation-drilldownNavigationBar_drilldownNavigationBar], .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] button.isActive[community_navigation-drilldownNavigationBar_drilldownNavigationBar]{
+    border-color: #313A90;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+body .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] a[community_navigation-drilldownNavigationBar_drilldownNavigationBar]  {
+    color:#FFFFFF;
+    }
+
+body .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] button[community_navigation-drilldownNavigationBar_drilldownNavigationBar] {
+       color:#FFFFFF;
+    } 
+
+body .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] a:hover[community_navigation-drilldownNavigationBar_drilldownNavigationBar], .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] a:active[community_navigation-drilldownNavigationBar_drilldownNavigationBar], .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] a:focus[community_navigation-drilldownNavigationBar_drilldownNavigationBar], .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] button:hover[community_navigation-drilldownNavigationBar_drilldownNavigationBar], .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] button:active[community_navigation-drilldownNavigationBar_drilldownNavigationBar], .comm-drilldown-navigation__bar[community_navigation-drilldownNavigationBar_drilldownNavigationBar] button:focus[community_navigation-drilldownNavigationBar_drilldownNavigationBar]{
+    background-color:#FFFFFF;
+    color: #313A90;
+    }    
+
+/*Footer*/    
+.texto-footer{
+    color: #FFFFFF; 
+    line-height: 26px; 
+    padding: 5%;
+    font-size: 14px;
+    }    
+ 
+/*cor texto botões*/
+.slds-button:active, .slds-button:focus, .slds-button:hover, .slds-button:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a.commerce_search-callToActionAnchorButton_callToActionAnchorButton {
+	text-transform: var(--dxp-s-text-heading-extra-large-text-transform);
+    flex-grow: 1;
+    color: #FFFFFF;
+    border-radius: 0px;
+}
+a.commerce_search-callToActionAnchorButton_callToActionAnchorButton:hover {
+    text-transform: var(--dxp-s-text-heading-extra-large-text-transform);
+    flex-grow: 1;
+    color: #000000;
+    border-radius: 0px;
+}
+    
+body button.commerce_product_details-addToCartButton_addToCartButton {
+    flex-grow: 1;
+    border-color: none;
+    border-radius: 0px;
+    color: #FFFFFF;
+}
+    
+/*Barra filtros pesquisa*/
+.desktop.commerce_builder-searchResultsLayout_searchResultsLayout .results-container.commerce_builder-searchResultsLayout_searchResultsLayout .filters.commerce_builder-searchResultsLayout_searchResultsLayout {
+    flex: 1 0 20%;
+    max-width: 15rem;
+    background-color: #EFEFEF;   
+}
+.filters-header.commerce_search-filtersPanel_filtersPanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #A9A9A9;  
+    padding: 5%;
+}
+.category-tree-section.commerce_search-filtersPanel_filtersPanel, .facets-section.commerce_search-filtersPanel_filtersPanel {
+    margin: 7%;
+    background-color: #FFFFFF;
+    border-color: #A9A9A9;   
+    padding: 5%;
+    border-radius: 5px;    
+}
+.filters-title.commerce_search-filtersPanel_filtersPanel {
+    font-weight: var(--dxp-c-strong-text-weight, 700);
+    margin-top: 5px;
+    color: #FFFFFF;
+}
+
+/*linha vertical*/
+.linhavertical {
+    border-left: 1.8px solid #FFFFFF;
+    height: auto;
+    left: 30%;
+}
+    
+/*detalhes produtos*/
+body .detalhes-produtos{
+	padding: 3%;
+	line-height: 28px;
+	color: #4b4f58;
+	font-size: 16px;
+}
+       
+/*botão login*/
+.guest-login-max-width.commerce_my_account-userProfileMenu_userProfileMenu {
+    max-width: 50rem;
+    width: 300px;
+    height: 40px;
+    background-color: #1C1C1C;
+    color: #FFFFFF;
+    padding: 3%;
+    margin-right: 50px;
+}
+    
+body .login-text.commerce_my_account-userProfileMenu_userProfileMenu {
+    font-size: 7px;
+    margin: auto;
+    font-weight: var(--com-c-my-account-user-profile-login-link-font-weight);
+    font-style: var(--com-c-my-account-user-profile-login-link-font-style);
+    text-decoration: var(--com-c-my-account-user-profile-login-link-text-decoration);
+    padding: 0.1%;
+    word-wrap: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+}
+    
+body .menu-trigger-p.commerce_my_account-userProfileMenu_userProfileMenu  {
+    font-size: 8px;
+    margin: auto;
+    padding: 0.1%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+}    
+
+.company-name-max-width.commerce_my_account-userProfileMenu_userProfileMenu {
+    max-width: 50rem;
+    width: 300px;
+    height: 40px;
+    padding: 3%;
+    margin-right: 50px;
+}    
+
+.input-container[b2b_search_suggestions-input_input] {
+    padding-left: 50%;
+    }
+.commerce-layoutHeader_templateWithWishlistSlot-host header.commerce-layoutHeader_templateWithWishlistSlot .header-search.commerce-layoutHeader_templateWithWishlistSlot {
+    width: 100px;
+    padding-left: 20%;
+    }
+
+/*back to top*/
+#ast-scroll-top {
+    background-color: #313A90;
+    font-size: 15px;
+    font-size: 1rem;
+}
+@media (min-width: 769px)
+#ast-scroll-top {
+    content: "769";
+}
+#ast-scroll-top {
+    display: none;
+    position: fixed;
+    text-align: center;
+    cursor: pointer;
+    z-index: 99;
+    width: 2.1em;
+    height: 2.1em;
+    line-height: 2.1;
+    color: #fff;
+    border-radius: 2px;
+    content: "";
+}
+    
+.ast-scroll-top-icon {
+    width: 4px;
+    color: #FFFFFF;
+    background-color: #313A90;
+}
+.ast-scroll-to-top-right {
+    right: 30px;
+    bottom: 30px;
+    background-color: #313A90;
+}
+    
+    
+/*Faixa contatos home*/    
+.container-contatos {
+	text-align: center;
+	display: flex;
+    justify-content: center;
+}
+	
+.right-aligned-contatos {
+	text-align: right;
+	font-size: 7px;
+}
+
+</style>
+    </head>
+    <body id="main">
+        <webruntime-app></webruntime-app>
+    </body>
+</html>

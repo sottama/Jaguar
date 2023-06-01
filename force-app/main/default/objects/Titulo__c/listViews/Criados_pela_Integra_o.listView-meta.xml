@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Criados_pela_Integra_o</fullName>
+    <columns>AccountId__c</columns>
+    <columns>NAME</columns>
+    <columns>CodigoTitulo__c</columns>
+    <columns>RepresentanteId__c</columns>
+    <columns>DataEmissao__c</columns>
+    <columns>DataVencimento__c</columns>
+    <columns>Descricao__c</columns>
+    <columns>ValorSaldo__c</columns>
+    <columns>PercentualComissao__c</columns>
+    <columns>ValorComissao__c</columns>
+    <columns>OrigemDocumento__c</columns>
+    <columns>PortadorTitulo__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATEDBY_USER.ALIAS</field>
+        <operation>equals</operation>
+        <value>ifutu</value>
+    </filters>
+    <label>Criados pela Integração</label>
+</ListView>

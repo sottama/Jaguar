@@ -1,0 +1,16 @@
+<template>
+    <div class="carosel">
+        <div class="slds-size_4-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small" style="border: none;"> Teste
+                <lightning-carousel class="image-carosel" style="max-height: 100px;" disable-auto-scroll={autoPlayDisable}>
+                    <template for:each={results} for:item="item">
+                        <lightning-carousel-image
+                        key={item.title}
+                        src= {item.url}>
+                        </lightning-carousel-image>     
+                    </template>
+                </lightning-carousel>
+            </div>
+        </div>
+    </div>
+</template>

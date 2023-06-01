@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+
+    <masterLabel>Commerce Back to top button</masterLabel>
+    <description>Component used on a page to add a return to the top of the page button after some scrolling</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="desiredOffset" type="Integer" label="Pixel to be scolled until the button appear" description="Button appear just after given pixel have been scrolled" default="250"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

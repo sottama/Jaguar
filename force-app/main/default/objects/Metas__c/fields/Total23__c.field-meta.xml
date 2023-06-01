@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total23__c</fullName>
+    <externalId>false</externalId>
+    <formula>Jan23__c + Fev23__c + Mar23__c + Abr23__c + Mai23__c + Jun23__c + Jul23__c + Ago23__c + Set23__c + Out23__c + Dez23__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total 23</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
