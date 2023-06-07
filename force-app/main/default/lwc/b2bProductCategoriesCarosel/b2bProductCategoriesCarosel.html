@@ -1,38 +1,23 @@
-<!-- <template>
-    <div class="carousel">
-        <div class="carousel-container">
-            <ul style={carouselStyle}>
-                <template for:each={carouselItems} for:item="item" for:index="index">
-                    <li key={item.id} class='active' data-item-id={item.id} data-item-index={index}>
-                        <h2>{item.title}</h2>
-                        <img src={item.imageUrl} alt={item.altText}>
-                    </li>
-                </template>
-            </ul>
-        </div>
-        <div class="carousel-navigation">
-            <button class="carousel-arrow" onclick={showPrevious} disabled={previousDisable}>&lt;</button>
-            <button class="carousel-arrow" onclick={showNext} disabled={nextDisable}>&gt;</button>
-          </div>
-    </div>
-  </template> -->
-
   <template>
     <div class="carousel">
+    <template if:true={itemsToShow.length}>
       <div class="carousel-container">
-        <ul style={carouselStyle}>
-          <template for:each={carouselItems} for:item="item" for:index="index">
-            <li key={item.id} class='active' data-item-id={item.id} data-item-index={index}>
-              <h2>{item.title}</h2>
-              <img src={item.imageUrl}>
-            </li>
-          </template>
-        </ul>
+        <ul>
+          <template for:each={itemsToShow} for:item="item" >
+            <li key={item.id} data-item-id={item.id} >
+              <a href={item.link}>
+                  <img src={item.imageUrl}>
+                </a>
+                <h2 class="slds-text-heading_small"><b>{item.title}</b></h2>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </template>
+        <div class="carousel-navigation">
+          <button class="carousel-arrow  carousel-arrow-left" onclick={showPrevious} disabled={previousDisable}>&lt;</button>
+          <button class="carousel-arrow  carousel-arrow-right" onclick={showNext} disabled={nextDisable}>&gt;</button>
+        </div>
       </div>
-      <div class="carousel-navigation">
-        <button class="carousel-arrow" onclick={showPrevious} disabled={previousDisable}>&lt;</button>
-        <button class="carousel-arrow" onclick={showNext} disabled={nextDisable}>&gt;</button>
-      </div>
-    </div>
   </template>
 

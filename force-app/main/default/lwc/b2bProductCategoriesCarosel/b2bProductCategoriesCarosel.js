@@ -7,11 +7,11 @@ export default class B2bProductCategoriesCarosel extends LightningElement {
     @api webStoreId;
     @api accountId;
     
-    carouselItems=[];
-    @track activeIndex = 0;
-    previousDisable = false;
-    nextDisable = false;
 
+    @track items = []; 
+    @track itemsToShow = []; 
+    @track currentPage = 1; 
+    @track pageSize = 4; 
 
     connectedCallback() {
         getProductCategoriesMedia({
@@ -25,44 +25,37 @@ export default class B2bProductCategoriesCarosel extends LightningElement {
         })
         .then(data =>{
             let objStr = JSON.parse(data);
-            console.log('objStr :>> ', JSON.stringify(objStr));
-            this.carouselItems = objStr.map((obj, index)=>{
+            
+            this.items = objStr.map((obj, index)=>{
                 return {
                     Id: index,
                     imageUrl: obj.url,
                     title: obj.title
                 }
-            }); 
-
-            // this.carouselInterval = setInterval(() => {
-            //     this.showNext();
-            //   }, 5000);
-
+            });
+            this.showItems();
         })
         .catch(error => console.log(error))
     }
 
-    get carouselStyle() {
-        return `transform: translateX(-${this.activeIndex * 33.33}%);`;
+    showItems() {
+        const startIndex = (this.currentPage - 1) * this.pageSize;
+        this.itemsToShow = this.items.slice(startIndex, startIndex + this.pageSize);
+        this.previousDisable = this.currentPage === 1;
+        this.nextDisable = this.currentPage >= Math.ceil(this.items.length / this.pageSize);
     }
-
+    
     showPrevious() {
-        if (this.activeIndex > 0) {
-          this.activeIndex -= 3;
+        if (this.currentPage > 1) {
+          this.currentPage--;
+          this.showItems();
         }
-
-        setArrows();
-    }
-
-    setArrows(){
-        this.previousDisable = (this.activeIndex === 0) ? true : false;
-        this.nextDisable = (this.activeIndex >= this.carouselItems.length - 3) ? true : false;
     }
     
     showNext() {
-        if (this.activeIndex < this.carouselItems.length - 3) {
-          this.activeIndex += 3;
+        if (this.currentPage < Math.ceil(this.items.length / this.pageSize)) {
+          this.currentPage++;
+          this.showItems();
         }
-        setArrows();  
     }
 }
