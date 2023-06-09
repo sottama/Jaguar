@@ -37,6 +37,8 @@ export default class B2bProductCategoriesCarosel extends NavigationMixin(Lightni
                     title: obj.title
                 }
             });
+
+            this.items.sort((a, b) => a.title.localeCompare(b.title));
             this.showItems();
             this.buscarCategorias();
         })
@@ -83,8 +85,10 @@ export default class B2bProductCategoriesCarosel extends NavigationMixin(Lightni
     
     showNext() {
         if (this.currentPage < Math.ceil(this.items.length / this.pageSize)) {
-          this.currentPage++;
-          this.showItems();
+            this.currentPage++;
+        } else {
+            this.currentPage = 1; // Volta para a primeira página
         }
+        this.showItems();
     }
 }
