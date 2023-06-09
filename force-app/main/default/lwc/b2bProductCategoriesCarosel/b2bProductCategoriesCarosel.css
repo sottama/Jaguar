@@ -1,4 +1,4 @@
-  .carousel {
+.carousel {
     width: 100%;
     overflow: hidden;
   }
@@ -49,7 +49,7 @@
     margin-top: 10px;
   }
   
-  .carousel-arrow {
+  .carousel-arrow  {
     background-color: #fff;
     color: #666;
     border: none;
@@ -57,11 +57,21 @@
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    vertical-align: middle;
+    padding-top: 10%;
   }
   
-  .carousel-arrow:hover {
-    background-color: #ebebeb;
+  .carousel-pagination {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+
+  .slide-transition {
+    transition: transform 0.5s ease-in-out;
   }
   
   .carousel-arrow-left {
@@ -72,6 +82,13 @@
     margin-left: 10px;
   }
 
+  /* .prev, .next {
+    padding: 8px 12px;
+    cursor: pointer;
+} */
+
+
   h2 {
     font-family: 'Montserrat', sans-serif;
+    padding-bottom: 2%;
   }

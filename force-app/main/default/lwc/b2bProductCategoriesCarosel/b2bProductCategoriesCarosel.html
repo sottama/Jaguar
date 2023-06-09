@@ -1,23 +1,20 @@
-  <template>
-    <div class="carousel">
+<template>
+  <div class="carousel">
     <template if:true={itemsToShow.length}>
-      <div class="carousel-container">
-        <ul>
-          <template for:each={itemsToShow} for:item="item" >
-            <li key={item.id} data-item-id={item.id} >
-              <a href={item.link}>
-                  <img src={item.imageUrl}>
-                </a>
-                <h2 class="slds-text-heading_small"><b>{item.title}</b></h2>
-              </li>
-            </template>
-          </ul>
-        </div>
-      </template>
-        <div class="carousel-navigation">
-          <button class="carousel-arrow  carousel-arrow-left" onclick={showPrevious} disabled={previousDisable}>&lt;</button>
-          <button class="carousel-arrow  carousel-arrow-right" onclick={showNext} disabled={nextDisable}>&gt;</button>
-        </div>
+      <div class="carousel-navigation">
+        <lightning-icon class="carousel-arrow carousel-arrow-left" icon-name="utility:chevronleft" alternative-text="Prev" onclick={showPrevious} disabled={previousDisable}></lightning-icon>
+        <ul class="carousel-pagination slide-transition">
+          <template for:each={itemsToShow} for:item="item" for:index="index">
+            <li key={item.id}>
+              <a href={item.link} onclick={handleCategory} data-item-id={item.id} data-item-title={item.title}>
+                <img src={item.imageUrl}>
+              </a>
+              <h2 class="slds-text-heading_small"><b>{item.title}</b></h2>
+            </li>
+          </template>
+        </ul>
+        <lightning-icon class="carousel-arrow carousel-arrow-right" icon-name="utility:chevronright" alternative-text="Next" onclick={showNext} disabled={nextDisable}></lightning-icon>
       </div>
-  </template>
-
+    </template>
+  </div>
+</template>

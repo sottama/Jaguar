@@ -1,6 +1,6 @@
 import { LightningElement, api, track, wire } from 'lwc';
 // import getDadosAdicionais from '@salesforce/apex/buscaDadosObjetoCustomizadoController.getDadosAdicionais'
-import getImageUrl from '@salesforce/apex/CommerceCustomCarouselController.getImageUrl';
+import getImageUrl from '@salesforce/apex/B2BCaroselController.getImageUrl';
 
 const EXIBIR_CARD = 'slds-show';
 const OCULTAR_CARD = 'slds-hide';
@@ -61,6 +61,7 @@ export default class CommerceCustomCarousel extends LightningElement {
                     dotClass: OCULTAR_CIRCULO
                 }
             });
+            console.log('prod: ', JSON.stringify(this.colecoes));
         })
         .catch(error => {
             this.error = error;

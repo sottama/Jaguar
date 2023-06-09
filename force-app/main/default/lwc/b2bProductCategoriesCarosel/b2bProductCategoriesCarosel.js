@@ -1,23 +1,27 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
+
 import getProductCategoriesMedia from '@salesforce/apex/B2BCaroselController.getProductCategoriesMedia';
+import getCategories from '@salesforce/apex/B2BCaroselController.getCategories';
 
 
-export default class B2bProductCategoriesCarosel extends LightningElement {
-    @api categoryId;
-    @api webStoreId;
-    @api accountId;
+export default class B2bProductCategoriesCarosel extends NavigationMixin(LightningElement) {
+    @api webstoreName;
+    @api categoryName;
     
 
     @track items = []; 
     @track itemsToShow = []; 
     @track currentPage = 1; 
-    @track pageSize = 4; 
+    @track pageSize = 4;
+    categorias = [];
+    paths = [];
 
     connectedCallback() {
         getProductCategoriesMedia({
-            webstoreId: this.webStoreId,
-            effectiveAccountId: this.accountId,
-            parentProductCategoryId: this.categoryId,
+            webstoreName: this.webstoreName,
+            effectiveAccountId: '',
+            categoryName: this.categoryName,
             fields: null,
             excludeFields: true,
             mediaGroups: null,
@@ -34,8 +38,33 @@ export default class B2bProductCategoriesCarosel extends LightningElement {
                 }
             });
             this.showItems();
+            this.buscarCategorias();
         })
         .catch(error => console.log(error))
+    }
+    handleCategory(event){
+        const categoryTitle = event.currentTarget.dataset.itemTitle;
+        let category = this.categorias.find(obj => obj.Name.toLowerCase() == categoryTitle.toLowerCase());
+
+        const url = `/category/${category.Id}`;
+        console.log('url :>> ', url);
+
+        this[NavigationMixin.Navigate]({
+            type: 'standard__webPage',
+            attributes: {
+                url: url
+            }
+        });
+    }
+
+    buscarCategorias(){
+        getCategories({
+            categoryName: this.categoryName
+        }).then((res) => {
+            this.categorias = res;
+        }).catch((err) => {
+            console.log('err :>> ', err);
+        });
     }
 
     showItems() {

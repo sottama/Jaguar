@@ -9,7 +9,7 @@ public without sharing class B2BCaroselController {
         ConnectApi.ManagedContentVersionCollection obj;
         if(!Test.isRunningTest()) {
             String channelId = [SELECT Id FROM ManagedContentChannel WHERE Name = :channelName LIMIT 1].id;
-            obj = ConnectApi.ManagedContent.getContentByContentKeys(channelId, keys, 0, 25, 'pt_BR', 'cms_image',
+            obj = ConnectApi.ManagedContent.getContentByContentKeys(channelId, keys, 0, 25, null, 'cms_image',
                                                                     false, startDate, endDate, true);  
         } else {
             obj = new ConnectApi.ManagedContentVersionCollection();
@@ -34,6 +34,50 @@ public without sharing class B2BCaroselController {
             wrapperList.add(wrapper);	
         }
         return JSON.serialize(wrapperList);
+    }
+
+    @AuraEnabled (cacheable=true)
+    public static String getProductCategoriesMedia(String webstoreName, String effectiveAccountId, 
+        String categoryName, List<String> fields, Boolean excludeFields, List<String> mediaGroups, Boolean excludeMedia)
+    {
+        try {
+            String webstoreId = [SELECT Id FROM Webstore WHERE Name = :webstoreName].Id;
+            String parentProductCategoryId = [SELECT Id FROM ProductCategory WHERE Name = :categoryName LIMIT 1].Id;
+            
+            // if(String.isblank(effectiveAccountId)){
+            //     effectiveAccountId = [SELECT Id FROM Account LIMIT 1].Id;
+            // }
+
+            ConnectApi.ProductCategoryDetailCollection categories = ConnectApi.CommerceCatalog.getProductCategoryChildren(webstoreId, null, parentProductCategoryId,
+                                                                    fields, excludeFields, mediaGroups, excludeMedia);
+
+            List<ReturnWrapper> wrapperList = new List<ReturnWrapper>();
+            List<String> lstKeys = new List<String>();
+
+            for(ConnectApi.ProductCategoryDetail categoryDetail : categories.productCategories){
+                if(categoryDetail.mediaGroups.size() > 0){
+                    String setUrl = categoryDetail.mediaGroups[0].mediaItems[0].url.substringBetween('media/', '?');
+                    lstKeys.add(setUrl);
+                }
+            }
+
+            return B2BCaroselController.getImageUrl(String.join(lstKeys, ','), webstoreName);
+
+        } catch (Exception e) {
+            System.debug('error: ' + e.getMessage());
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static List<ProductCategory> getCategories(String categoryName){
+        try {
+            String parentCategory = [SELECT Id, Name FROM ProductCategory WHERE Name = :categoryName LIMIT 1].Id;
+            List<ProductCategory> lstCategories = [SELECT Id, Name FROM ProductCategory WHERE ParentCategoryId = :parentCategory];
+            return lstCategories;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 
     public class ReturnWrapper{

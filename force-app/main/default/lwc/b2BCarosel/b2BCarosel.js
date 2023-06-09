@@ -20,6 +20,7 @@ export default class B2BCarosel extends LightningElement {
     wiredData({error, data}) {
         if (data) {
             let objStr = JSON.parse(data);
+            console.log("objStr: ", JSON.stringify(objStr, null, 4));
             objStr.map(element=>{
                 this.results = [...this.results,{title:element.title, url:element.url}]
             });  
