@@ -6,10 +6,12 @@
         <ul class="carousel-pagination slide-transition">
           <template for:each={itemsToShow} for:item="item" for:index="index">
             <li key={item.id}>
-              <a href={item.link} onclick={handleCategory} data-item-id={item.id} data-item-title={item.title}>
-                <img src={item.imageUrl}>
-              </a>
-              <h2 class="slds-text-heading_small"><b>{item.title}</b></h2>
+              <div class="carousel-item-container">
+                <a href={item.link} onclick={handleCategory} data-item-id={item.id} data-item-title={item.title}>
+                  <img src={item.imageUrl}>
+                </a>
+                <h2 class="slds-text-heading_small"><b>{item.title}</b></h2>
+              </div>
             </li>
           </template>
         </ul>
